@@ -1,0 +1,26 @@
+<% content_for :title do %>CNAB Dashboard<% end %>
+<h2 align="center">CNAB</h2>
+<h1>Your infra, config, app. Bundled.</h1>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="installs" data-view="Graph" data-title="Bundles Installed" style="background-color:#ff9618"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="recent" data-view="List" data-unordered="true" data-title="Recent Bundles" style="background-color:#4d99db"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
+      <div data-id="mixins" data-view="List" data-unordered="true" data-title="Mixins" data-moreinfo="Top porter mixins" style="background-color:#7b32b3"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="installers" data-view="List" data-unordered="true" data-title="Installers" style="background-color:#76ba16"></div>
+    </li>
+
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="health" data-view="Health" data-title="Bundle Status"></div>
+    </li>
+  </ul>
+</div>
