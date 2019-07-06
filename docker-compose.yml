@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    build: "collector"
+    image: "collector-api:latest"
+    ports:
+      - "8081:3031"
+    volumes:
+      - "${HOME}/.porter/claims:/claims/porter"
+      - "${HOME}/.duffle/claims:/claims/duffle"
+  dashboard:
+    depends_on:
+      - api
+    build: "smashing"
+    image: "cnab-dashboard:latest"
+    ports:
+      - "8080:3030"
+    environment:
+      - GEMS=rest-client
+      - CLAIMS_API=api
+    volumes:
+      - "./data/smashing/dashboards:/dashboards"
+      - "./data/smashing/widgets:/widgets"
+      - "./data/smashing/jobs:/jobs"

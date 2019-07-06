@@ -1,12 +1,19 @@
-bundles = [
-  {'label': 'azure-mysql', 'value': 'upgrade'},
-  {'label': 'cnab-dashboard', 'value': 'install'},
-  {'label': 'brigade', 'value': 'upgrade'},
-  {'label': 'jenkins', 'value': 'upgrade'}, 
-  {'label': 'jenkins-aci-connector', 'value': 'install'}, 
-  {'label': 'quickstart', 'value': 'uninstall'}
-] 
+require 'rest-client'
+require 'json'
+
+claimsapi = ENV['CLAIMS_API']
 
 SCHEDULER.every '2s' do
-  send_event('recent', { items: bundles })
+  response = RestClient::Request.new(
+     :method => :get,
+     :url => "http://#{claimsapi}:3031/recent"
+  ).execute
+  results = JSON.parse(response.to_str)
+
+  items = Array.new
+  results.each do |i|
+    items << { 'label': i['bundle'], 'value': i['action'] }
+  end
+
+  send_event('recent', { items: items })
 end

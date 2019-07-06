@@ -5,15 +5,15 @@
             <span class="h4" data-bind="error">Error</span>
         </div> <!-- /error -->
         <div data-hideif="status | equals 'error'"> <!-- no error -->
-            <div data-hideif="fails | equals 0" class="floated">
-                <div class="h3" data-bind="fails"></div>
-                <div data-hideif="fails | equals 0" class="h4">
+            <div data-hideif="failed | equals 0" class="floated">
+                <div class="h3" data-bind="failed"></div>
+                <div data-hideif="failed | equals 0" class="h4">
                     failed
                 </div>
             </div>
 
-            <div data-hideif="pendings | equals 0" class="floated">
-                <div class="h3" data-bind="pendings"></div>
+            <div data-hideif="pending | equals 0" class="floated">
+                <div class="h3" data-bind="pending"></div>
                 <div class="h4">
                     in-progress
                 </div>

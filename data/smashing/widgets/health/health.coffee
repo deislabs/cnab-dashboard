@@ -8,10 +8,10 @@ class Dashing.Health extends Dashing.Widget
   onData: (data) ->
 
     status = switch
-      when not (data.hasOwnProperty('pendings') and data.hasOwnProperty('fails')) then 'error'
+      when not (data.hasOwnProperty('pending') and data.hasOwnProperty('failed')) then 'error'
       when data.hasOwnProperty('error') then 'error'
-      when @get('fails') > 0 then 'red'
-      when @get('pendings') > 0 then 'yellow'
+      when @get('failed') > 0 then 'red'
+      when @get('pending') > 0 then 'yellow'
       else 'green'
 
     @set 'status', status
@@ -19,4 +19,4 @@ class Dashing.Health extends Dashing.Widget
     if status is 'error'
       if not data.hasOwnProperty('error')
         # Error condition because of a missing field
-        @set 'error', 'Data provided without "fails" and "pendings" fields.'
+        @set 'error', 'Data provided without "failed" and "pending" fields.'

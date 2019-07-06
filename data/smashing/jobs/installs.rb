@@ -1,14 +1,16 @@
-# Populate the graph with some random points
-points = []
-(1..10).each do |i|
-  points << { x: i, y: rand(50) }
-end
-last_x = points.last[:x]
+require 'rest-client'
+require 'json'
+
+claimsapi = ENV['CLAIMS_API']
 
 SCHEDULER.every '2s' do
-  points.shift
-  last_x += 1
-  points << { x: last_x, y: rand(50) }
+  response = RestClient::Request.new(
+     :method => :get,
+     :url => "http://#{claimsapi}:3031/installs"
+  ).execute
+  results = JSON.parse(response.to_str)
+  installedBundles = results['installedBundles']
+  points = results['installHistory']
 
-  send_event('installs', points: points)
+  send_event('installs', points: points, displayedValue: installedBundles)
 end
