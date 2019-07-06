@@ -2,10 +2,15 @@
 
 See what bundles you have installed, and take a peek into what they are deploying.
 
+![screenshot of dashboard](screenshot.png)
+
 # Widgets
 
+## Implemented
 * Number of installed bundles
 * Recently run bundles
+
+## Roadmap
 * Top Installers
   * This can tell you if people are using duffle, porter or docker app, or some mix.
 * Top Mixins
